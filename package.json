@@ -68,5 +68,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/JackySoft/vite-plugin-externals-new"
+  },
+  "bugs": {
+    "url": "https://github.com/JackySoft/vite-plugin-externals-new/issues"
+  },
+  "homepage": "https://github.com/JackySoft/vite-plugin-externals-new",
+  "publishConfig": {
+    "JackySoft:registry": "https://npm.pkg.github.com"
   }
 }
