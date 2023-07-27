@@ -1,0 +1,6 @@
+dist
+docs-dist
+migrate.js
+generate-package-json.js
+build.sh
+.van-report-before-stage.json
