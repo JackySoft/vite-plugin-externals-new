@@ -5,6 +5,15 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
+  "author": {
+    "name": "河畔一角",
+    "email": "sunnyboysoft@163.com",
+    "url": "http://www.imooc.com/t/1343480"
+  },
+  "unpkg": "dist/cjs/index.js",
+  "files": [
+    "dist"
+  ],
   "license": "ISC",
   "engines": {
     "node": ">=10"
@@ -61,9 +70,6 @@
     ">0.2%",
     "not dead",
     "not op_mini all"
-  ],
-  "files": [
-    "dist"
   ],
   "repository": {
     "type": "git",
