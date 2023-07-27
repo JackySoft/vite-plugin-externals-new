@@ -16,7 +16,7 @@ yarn add vite-plugin-externals-new -D
 
 ```js
 import { defineConfig } from 'vite';
-import { VitePluginExternals } from '@hll/vite-plugin-externals';
+import { VitePluginExternals } from 'vite-plugin-externals-new';
 export default defineConfig({
   ...
   plugins: [VitePluginExternals()],

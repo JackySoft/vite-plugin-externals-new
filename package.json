@@ -69,10 +69,6 @@
   "files": [
     "dist"
   ],
-  "hllStarterKit": {
-    "version": "@hll/create-project@1.10.6",
-    "boilerplateName": "@hll/boilerplate-library-typescript"
-  },
   "repository": {
     "type": "git",
     "url": "https://gitlab.huolala.cn/group-van/vite-plugin-externals"
