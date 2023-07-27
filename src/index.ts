@@ -45,8 +45,8 @@ export async function VitePluginExternals(
   // 如果未检测到配置变量，则直接返回
   if (!Object.keys(map).length) return {};
   return {
-    name: 'VitePluginExternals',
     ...viteExternalsPlugin(map, userOptions),
+    name: 'VitePluginExternalsNew',
     // 插入脚本
     transformIndexHtml(html: string) {
       const $ = load(html);
