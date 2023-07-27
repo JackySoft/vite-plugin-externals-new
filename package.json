@@ -10,8 +10,8 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "yarn run build:lib",
-    "build:lib": "yarn run clean && rollup -c",
+    "build": "npm run build:lib",
+    "build:lib": "npm run clean && rollup -c",
     "start": "rollup -c --watch",
     "watch": "rollup -c --watch",
     "test": "jest",
