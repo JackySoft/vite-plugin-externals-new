@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import { VitePluginExternals } from '../../dist/esm/index';
+import { VitePluginExternals } from '../../src/index';
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
