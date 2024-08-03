@@ -3,6 +3,7 @@
  * 1. 处理JS模块中导入方式，修改为 window['vue']方式
  * 2. 自动把外部链接插入到HTML中
  */
+import { PluginOption } from 'vite';
 import { BasicAcceptedElems, load } from 'cheerio';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
 import { Options } from './types';
@@ -10,13 +11,13 @@ import { UserOptions } from 'vite-plugin-externals/dist/src/types';
 export function VitePluginExternals(
   options: Options,
   userOptions: UserOptions = {},
-) {
+): PluginOption {
   const keys = Object.keys(options);
-  const configRoot = process.cwd();
   // 判断 options 是否有值
   if (!keys.length) {
-    // 覆盖默认配置
-    return {};
+    throw new Error(
+      'Options is empty, please check the configuration of VitePluginExternals',
+    );
   }
   // 生成 external 配置
   const map: { [key: string]: string } = {};

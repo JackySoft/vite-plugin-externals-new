@@ -1,19 +1,12 @@
 import { load } from 'cheerio';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
 
-/**
- * vite-plugin-external
- * 1. 处理JS模块中导入方式，修改为 window['vue']方式
- * 2. 自动把外部链接插入到HTML中
- */
 function VitePluginExternals(options) {
   let userOptions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   const keys = Object.keys(options);
-  process.cwd();
   // 判断 options 是否有值
   if (!keys.length) {
-    // 覆盖默认配置
-    return {};
+    throw new Error('Options is empty, please check the configuration of VitePluginExternals');
   }
   // 生成 external 配置
   const map = {};
