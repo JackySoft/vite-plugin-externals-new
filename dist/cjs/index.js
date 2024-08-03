@@ -4,57 +4,20 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var cheerio = require('cheerio');
 var vitePluginExternals = require('vite-plugin-externals');
-var fs = require('fs');
-var path = require('path');
-
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-function _interopNamespace(e) {
-  if (e && e.__esModule) return e;
-  var n = Object.create(null);
-  if (e) {
-    Object.keys(e).forEach(function (k) {
-      if (k !== 'default') {
-        var d = Object.getOwnPropertyDescriptor(e, k);
-        Object.defineProperty(n, k, d.get ? d : {
-          enumerable: true,
-          get: function () { return e[k]; }
-        });
-      }
-    });
-  }
-  n["default"] = e;
-  return Object.freeze(n);
-}
-
-var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
 
 /**
  * vite-plugin-external
  * 1. 处理JS模块中导入方式，修改为 window['vue']方式
  * 2. 自动把外部链接插入到HTML中
  */
-async function VitePluginExternals() {
-  let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+function VitePluginExternals(options) {
   let userOptions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   const keys = Object.keys(options);
-  const configRoot = process.cwd();
-  const resolvePath = path__default["default"].resolve(configRoot, 'external.config.js');
+  process.cwd();
   // 判断 options 是否有值
   if (!keys.length) {
-    try {
-      // 配置文件检测
-      const info = fs.statSync(resolvePath);
-    } catch (error) {
-      throw new Error('external.config.js file does not exist');
-    }
-    // 动态获取配置文件
-    const configFile = await (function (t) { return Promise.resolve().then(function () { return /*#__PURE__*/_interopNamespace(require(t)); }); })(resolvePath);
-    if (!configFile.default || typeof configFile.default !== 'object') {
-      throw new Error('external.config.js file is error');
-    }
     // 覆盖默认配置
-    options = configFile.default || {};
+    return {};
   }
   // 生成 external 配置
   const map = {};
@@ -63,8 +26,6 @@ async function VitePluginExternals() {
     if (!varName) throw new Error('Vite plugin external missing configuration parameter varName');
     map[key] = varName;
   }
-  // 如果未检测到配置变量，则直接返回
-  if (!Object.keys(map).length) return {};
   return {
     ...vitePluginExternals.viteExternalsPlugin(map, userOptions),
     name: 'VitePluginExternalsNew',

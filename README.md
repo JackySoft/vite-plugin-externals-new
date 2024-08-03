@@ -19,16 +19,7 @@ import { defineConfig } from 'vite';
 import { VitePluginExternals } from 'vite-plugin-externals-new';
 export default defineConfig({
   ...
-  plugins: [VitePluginExternals()],
-});
-```
-
-三、创建配置
-
-1. 方法一（创建 external.config.js）
-
-```js
-export default {
+  plugins: [VitePluginExternals({
   vue: {
     src: 'https://unpkg.com/vue@3/dist/vue.global.js',
     varName: 'Vue',
@@ -41,23 +32,7 @@ export default {
     defer: true,
     async: false,
   },
-};
-```
-
-> `inject`默认为`head`，`defer`默认为`true`
-
-2. 方法二（添加 options 配置）
-
-```js
-VitePluginExternals({
-  vue: {
-    src: 'https://unpkg.com/vue@3/dist/vue.global.js',
-    varName: 'Vue',
-  },
-  'vue-router': {
-    src: 'https://unpkg.com/vue-router@4',
-    varName: 'VueRouter',
-  },
+})],
 });
 ```
 

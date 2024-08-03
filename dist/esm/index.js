@@ -1,34 +1,19 @@
 import { load } from 'cheerio';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
-import { statSync } from 'fs';
-import path from 'path';
 
 /**
  * vite-plugin-external
  * 1. 处理JS模块中导入方式，修改为 window['vue']方式
  * 2. 自动把外部链接插入到HTML中
  */
-async function VitePluginExternals() {
-  let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+function VitePluginExternals(options) {
   let userOptions = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   const keys = Object.keys(options);
-  const configRoot = process.cwd();
-  const resolvePath = path.resolve(configRoot, 'external.config.js');
+  process.cwd();
   // 判断 options 是否有值
   if (!keys.length) {
-    try {
-      // 配置文件检测
-      const info = statSync(resolvePath);
-    } catch (error) {
-      throw new Error('external.config.js file does not exist');
-    }
-    // 动态获取配置文件
-    const configFile = await import(resolvePath);
-    if (!configFile.default || typeof configFile.default !== 'object') {
-      throw new Error('external.config.js file is error');
-    }
     // 覆盖默认配置
-    options = configFile.default || {};
+    return {};
   }
   // 生成 external 配置
   const map = {};
@@ -37,8 +22,6 @@ async function VitePluginExternals() {
     if (!varName) throw new Error('Vite plugin external missing configuration parameter varName');
     map[key] = varName;
   }
-  // 如果未检测到配置变量，则直接返回
-  if (!Object.keys(map).length) return {};
   return {
     ...viteExternalsPlugin(map, userOptions),
     name: 'VitePluginExternalsNew',
