@@ -19,7 +19,8 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "rollup -c",
+    "build": "yarn run build:lib",
+    "build:lib": "yarn run clean && rollup -c",
     "start": "rollup -c --watch",
     "watch": "rollup -c --watch",
     "test": "jest",
@@ -33,7 +34,8 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
-    "vite-plugin-externals": "^0.6.2"
+    "vite-plugin-externals": "^0.6.2",
+    "vite-plugin-externals-new": "^1.5.1"
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.22.9",
